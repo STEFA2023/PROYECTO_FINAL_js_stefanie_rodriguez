@@ -4,26 +4,26 @@ let productos = [
     {
         "id": "producto1",
         "nombre": "Pantalon",
-        "precio": "1200",
-        "imagen": "#",
+        "precio": "1900",
+        "imagen": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFudGFsb25lc3xlbnwwfHwwfHx8MA%3D%3D",
     },
     {
         "id": "producto2",
         "nombre": "Remera",
         "precio": "600",
-        "imagen": "#",
+        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnps59Q71OCaomGRYtEWah7Dj_b-i8cFJtGsJ6pBUE3A&s",
     },
     {
         "id": "producto3",
         "nombre": "Short",
         "precio": "800",
-        "imagen": "#",
+        "imagen": "https://img.ltwebstatic.com/images3_pi/2020/04/23/1587651494ab8b4e6e9385ab66c1175afe35380de1_thumbnail_720x.webp",
     },
     {
         "id": "producto4",
-        "nombre": "Zapatos",
-        "precio": "2500",
-        "imagen": "#",
+        "nombre": "Pantuflas",
+        "precio": "1200",
+        "imagen": "https://m.media-amazon.com/images/I/6149fJ0aDlL._AC_UF894,1000_QL80_.jpg",
     }
 ]
 
@@ -37,7 +37,7 @@ productos.forEach(producto => {
     card.className = "col mb-5 d-flex justify-content-center";
     card.innerHTML = `
     <div class="card h-100">
-    <img class="card-img-top" src= "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+    <img class="card-img-top" src= ${producto.imagen} alt="..." />
     <div class="card-body p-4">
     <div class="text-center">
     <h5 class="producto_ingresado">${producto.nombre}</h5>
