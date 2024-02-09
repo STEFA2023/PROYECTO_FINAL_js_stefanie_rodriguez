@@ -2,6 +2,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     const carritoList = document.getElementById("carrito-list");
+    const totalPrecioElement = document.getElementById("total-precio");
+
 
     // Obtener productos del localStorage
     const productosEnCarrito = JSON.parse(localStorage.getItem("ProductosEnCarrito")) || [];
@@ -12,7 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarProductosEnCarrito() {
         carritoList.innerHTML = "";
+        let totalPrecio = 0; 
+
         productosEnCarrito.forEach(producto => {
+            totalPrecio += parseFloat(producto.precio);
             const listItem = document.createElement("li");
             listItem.className = "list-group-item";
             listItem.innerHTML = `
@@ -23,5 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             carritoList.appendChild(listItem);
         });
+        // Mostrar el total de la compra
+        totalPrecioElement.textContent = `$${totalPrecio.toFixed(2)}`;
     }
 });

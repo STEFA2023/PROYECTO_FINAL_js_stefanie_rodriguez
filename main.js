@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 //DOM productos de la tienda
 
 let productos = [
@@ -53,9 +55,6 @@ productos.forEach(producto => {
     actualizarBotonesAgregar();
 });
 
-
-
-
 function actualizarBotonesAgregar() {
     boton_agregar_carrito = document.querySelectorAll("[id^='producto_agregar'] button");
     boton_agregar_carrito.forEach(boton => {
@@ -75,15 +74,48 @@ function agregarAlCarrito(e) {
 }
 
 
-
 localStorage.setItem("ProductosEnCarrito", JSON.stringify(productosEnCarrito));
 console.log(productosEnCarrito);
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
     const botonCarrito = document.querySelector('.btn-outline-dark');
 
+    botonCarrito.addEventListener('click', function() {
+        window.location.href = 'carrito_de_compras.html';
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const boton_agregar_carrito = document.querySelectorAll("[id^='producto_agregar'] button");
+    const numeroCarrito = document.querySelector('.badge');
+
+    const productosEnCarrito = JSON.parse(localStorage.getItem("ProductosEnCarrito")) || [];
+    actualizarNumeroCarrito();
+
+    // Escuchar eventos de clic en botones "Agregar al carrito"
+    
+    boton_agregar_carrito.forEach(boton => {
+        boton.addEventListener("click", function(e) {
+            const idBoton = e.currentTarget.getAttribute("data-id");
+            const productoAgregado = productos.find(producto => producto.id === idBoton);
+            productosEnCarrito.push(productoAgregado);
+            localStorage.setItem("ProductosEnCarrito", JSON.stringify(productosEnCarrito));
+            actualizarNumeroCarrito();
+            console.log(productosEnCarrito);
+            Swal.fire({
+                title: 'Has agregado el producto al carrito',
+                icon: 'success'
+            });
+        });
+    });
+
+    function actualizarNumeroCarrito() {
+        numeroCarrito.textContent = productosEnCarrito.length;
+    }
+
+    const botonCarrito = document.querySelector('.btn-outline-dark');
     botonCarrito.addEventListener('click', function() {
         window.location.href = 'carrito_de_compras.html';
     });
