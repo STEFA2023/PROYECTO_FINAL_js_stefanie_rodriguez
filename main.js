@@ -1,7 +1,5 @@
 import Swal from "sweetalert2";
 
-//DOM productos de la tienda
-
 let productos = [
     {
         "id": "producto1",
@@ -26,8 +24,8 @@ let productos = [
         "nombre": "Zapatos",
         "precio": "2500",
         "imagen": "#",
-    },
-];
+    }
+]
 
 let boton_agregar_carrito = document.querySelectorAll("[id^='producto_agregar'] button");
 
